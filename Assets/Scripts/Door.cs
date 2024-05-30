@@ -14,7 +14,6 @@ public class Door : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{other.gameObject.tag} - {other.gameObject.name}");
         if (!other.gameObject.CompareTag("Player")) return;
 
         if (_isIndoor)

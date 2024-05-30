@@ -46,6 +46,21 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void OpenInventory()
+    {
+        _inventory = _inventoryRepository.GetInventory();
+            
+        ui.gameObject.SetActive(true);
+        
+        var rootElement = ui.rootVisualElement;
+            
+        _columns = new int[columnCount]
+            .Select((_, idx) => rootElement.Q<VisualElement>($"InvColumn{idx + 1}"))
+            .ToList();
+                
+        UpdateInventoryUI();
+    }
+
     private void UpdateInventoryUI()
     {
         var positionToItem = _inventory.ToDictionary(i => i.position, i => i);
