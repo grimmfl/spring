@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIs/Styles/styles.uss?fileID=7433441132597879392&amp;guid=0137f691baa6f408ebdd97997cb4e52c&amp;type=3#styles" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; justify-content: center; width: auto;">
+        <ui:VisualElement name="VisualElement" class="bg-creme">
+            <ui:VisualElement name="VisualElement" class="inv-row">
+                <ui:VisualElement name="InvColumn1" class="inv-col" style="width: auto; background-image: none;" />
+                <ui:VisualElement name="InvColumn2" class="inv-col" />
+                <ui:VisualElement name="InvColumn3" class="inv-col" />
+                <ui:VisualElement name="InvColumn4" class="inv-col" />
+                <ui:VisualElement name="InvColumn5" class="inv-col" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
