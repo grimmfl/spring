@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using SQLite4Unity3d;
 using UnityEngine;
 
@@ -77,6 +78,19 @@ namespace Persistence
 			connection.Close();
 
 			return result;
+		}
+
+		protected void Execute(Action<SQLiteConnection> action)
+		{
+			var connection = OpenConnection();
+			
+			connection.BeginTransaction();
+
+			action.Invoke(connection);
+			
+			connection.Commit();
+			
+			connection.Close();
 		}
 	}
 }

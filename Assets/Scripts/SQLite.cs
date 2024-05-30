@@ -2922,6 +2922,12 @@ namespace SQLite4Unity3d
 			var query = Take (1);
 			return query.ToList<T>().FirstOrDefault ();
 		}
+
+		public T FirstOrDefault (Expression<Func<T, bool>> predExpr)
+		{
+			var query = Where(predExpr).Take(1);
+			return query.ToList<T>().FirstOrDefault ();
+		}
 	}
 
 	public static class SQLite3

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Persistence;
+using Persistence.Models;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -28,12 +29,9 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.E))
         {
+            _inventory = _inventoryRepository.GetInventory();
+            
             ui.gameObject.SetActive(!ui.gameObject.activeInHierarchy);
-
-            if (!_initialized)
-            {
-                
-            }
 
             if (ui.gameObject.activeInHierarchy)
             {
@@ -50,7 +48,7 @@ public class Inventory : MonoBehaviour
 
     private void UpdateInventoryUI()
     {
-        var positionToItem = _inventory.ToDictionary(i => i.position, i => i.item);
+        var positionToItem = _inventory.ToDictionary(i => i.position, i => i);
         
         for (var i = 0; i < _columns.Count; i++)
         {
@@ -62,7 +60,7 @@ public class Inventory : MonoBehaviour
             
             col.Add(new Label
             {
-                text = item.shortName
+                text = $"{item.item.shortName} - {item.count}"
             });
         }
     }
