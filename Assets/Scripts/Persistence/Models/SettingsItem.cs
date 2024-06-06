@@ -7,7 +7,7 @@ namespace Persistence.Models
     {
         public string key { get; set; }
         
-        public SettingsType type { get; set; }
+        public ValueType type { get; set; }
         
         public int intValue { get; set; }
 

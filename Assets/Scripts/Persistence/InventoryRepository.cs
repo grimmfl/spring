@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Persistence.Models;
@@ -7,6 +8,14 @@ namespace Persistence
     public class InventoryRepository : RepositoryBase
     {
         private readonly SettingsRepository _settingsRepository = new SettingsRepository();
+
+        public static readonly ICollection<Action<ICollection<InventoryItem>>> OnInventoryChanged =
+            new List<Action<ICollection<InventoryItem>>>();
+
+        public InventoryRepository()
+        {
+            InvokeOnInventoryChangedCallbacks();
+        }
         
         public ICollection<InventoryItem> GetInventory()
         {
@@ -65,6 +74,8 @@ namespace Persistence
                 c.UpdateAll(toUpdate);
             });
             
+            InvokeOnInventoryChangedCallbacks();
+            
             return idsToCreate
                 .Skip(freePositions.Count)
                 .ToDictionary(p => p.Key, p => p.Value);
@@ -79,6 +90,44 @@ namespace Persistence
             var freePositions = new bool[size].Select((_, idx) => idx).Except(loadedPositions);
 
             return freePositions.Take(count).ToList();
+        }
+
+        public void RemoveItems(IDictionary<int, int> idsToCount)
+        {
+            var ids = idsToCount.Keys;
+
+            var items = Query(c => c.Table<InventoryItem>().Where(i => ids.Contains(i.idItem)).ToList());
+
+            var toDelete = items.Where(i => i.count - idsToCount[i.idItem] <= 0).ToList();
+
+            var toUpdate = items.Except(toDelete).ToList();
+            
+            Execute(c =>
+            {
+                foreach (var item in toDelete)
+                {
+                    c.Delete<InventoryItem>(item.idItem);
+                }
+
+                foreach (var item in toUpdate)
+                {
+                    item.count -= idsToCount[item.idItem];
+                }
+
+                c.UpdateAll(toUpdate);
+            });
+            
+            InvokeOnInventoryChangedCallbacks();
+        }
+
+        private void InvokeOnInventoryChangedCallbacks()
+        {
+            var inventory = GetInventory();
+
+            foreach (var cb in OnInventoryChanged)
+            {
+                cb.Invoke(inventory);
+            }
         }
     }
 }

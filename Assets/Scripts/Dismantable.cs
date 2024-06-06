@@ -13,7 +13,7 @@ public class Dismantable : MonoBehaviour
     private GameObject _player;
 
     private GameEntityRepository _gameEntityRepository;
-    private InventoryRepository _inventoryRepository;
+    private readonly InventoryRepository _inventoryRepository = new InventoryRepository();
     
     private bool _isDismantling;
     private GameEntity _gameEntity;
@@ -26,7 +26,6 @@ public class Dismantable : MonoBehaviour
         _player = GameObject.FindWithTag("Player");
 
         _gameEntityRepository = new GameEntityRepository();
-        _inventoryRepository = new InventoryRepository();
         
         _gameEntity = _gameEntityRepository.GetById(idGameEntity);
     }
@@ -77,7 +76,7 @@ public class Dismantable : MonoBehaviour
     private void Drop()
     {
         var dropCounts = _gameEntity.dropItems.ToDictionary(x => x.idItem, x => Random.Range(x.min, x.max));
-        
+
         var toDrop = _inventoryRepository.AddItems(dropCounts);
 
         foreach (var pair in toDrop)

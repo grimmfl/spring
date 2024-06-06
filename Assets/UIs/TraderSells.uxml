@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:VisualElement style="flex-grow: 1; background-color: rgb(34, 34, 34); width: 100px; max-width: 100px; min-width: 100px; height: 200px; max-height: 200px; min-height: 200px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px;">
+            <ui:VisualElement name="Entry1" style="flex-grow: 1; background-color: rgb(144, 144, 144); border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px;" />
+            <ui:VisualElement name="Entry2" style="flex-grow: 1; background-color: rgb(144, 144, 144); border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px;" />
+            <ui:VisualElement name="Entry3" style="flex-grow: 1; background-color: rgb(144, 144, 144); border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px;" />
+            <ui:VisualElement name="Entry4" style="flex-grow: 1; background-color: rgb(144, 144, 144); border-top-left-radius: 8px; border-bottom-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

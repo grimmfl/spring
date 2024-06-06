@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UIs/Styles/inventory.uss?fileID=7433441132597879392&amp;guid=415ccd96375914492a47867591c28421&amp;type=3#inventory" />
+    <ui:VisualElement name="Container" class="inv-container" style="flex-direction: row;">
+        <ui:VisualElement name="Inventory" class="inv-inventory">
+            <ui:VisualElement name="HeaderContainer" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: space-between; border-left-color: rgba(255, 141, 0, 0.32); border-right-color: rgba(255, 141, 0, 0.32); border-top-color: rgba(255, 141, 0, 0.32); border-bottom-color: rgba(255, 141, 0, 0.32); border-bottom-width: 2px; height: 50px; max-height: 50px; min-height: 50px;">
+                <ui:Label tabindex="-1" text="Inventory" display-tooltip-when-elided="true" name="Header" class="inv-header" style="padding-bottom: 10px; margin-bottom: 10px; width: auto; height: 30px; border-bottom-width: 0;" />
+                <ui:Label tabindex="-1" text="20" display-tooltip-when-elided="true" name="MoneyDisplay" style="color: rgb(255, 141, 0); font-size: 24px; height: 30px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="SlotContainer" class="inv-slot-container" />
+        </ui:VisualElement>
+        <ui:VisualElement name="TraderInfo" style="flex-grow: 1; background-color: rgb(28, 32, 36); width: 20%; max-width: 20%; height: 75%; max-height: 75%; border-left-color: rgb(255, 141, 0); border-right-color: rgb(255, 141, 0); border-top-color: rgb(255, 141, 0); border-bottom-color: rgb(255, 141, 0); border-top-width: 5px; border-left-width: 5px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; visibility: hidden;">
+            <ui:Label tabindex="-1" display-tooltip-when-elided="true" name="TraderHeader" class="inv-header" />
+            <ui:VisualElement name="TraderSlotContainer" class="inv-slot-container" />
+        </ui:VisualElement>
+        <ui:VisualElement name="GhostIcon" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; width: 90px; height: 90px; visibility: hidden;" />
+    </ui:VisualElement>
+</ui:UXML>

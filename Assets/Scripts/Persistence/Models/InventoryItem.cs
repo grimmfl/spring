@@ -1,9 +1,10 @@
+using System;
 using SQLite4Unity3d;
 
 namespace Persistence.Models
 {
     [Table("inventory")]
-    public class InventoryItem
+    public class InventoryItem : IEquatable<InventoryItem>
     {
         [PrimaryKey, NotNull, Unique]
         public int idItem { get; set; }
@@ -16,5 +17,12 @@ namespace Persistence.Models
         
         [Ignore]
         public Item item { get; set; }
+
+        public bool Equals(InventoryItem other)
+        {
+            if (other == null) return false;
+
+            return other.idItem == idItem;
+        }
     }
 }
