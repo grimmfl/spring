@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -8,6 +9,8 @@ using UnityEngine.UIElements;
 
 public class InventoryUIController : MonoBehaviour
 {
+    public static readonly ICollection<Action<bool>> OnInventoryToggleCallbacks = new List<Action<bool>>();
+    
     private StatRepository _statRepository;
     private InventoryRepository _inventoryRepository;
 
@@ -23,6 +26,7 @@ public class InventoryUIController : MonoBehaviour
 
     private static VisualElement _mGhostIcon;
 
+    private static bool _isVisible;
     private static bool _isDragging;
     private static InventorySlot _originalSlot;
 
@@ -35,6 +39,7 @@ public class InventoryUIController : MonoBehaviour
     {
         //Store the root from the UI Document component
         _mRoot = GetComponent<UIDocument>().rootVisualElement;
+        _mRoot.style.display = DisplayStyle.None;
 
         //Search the root for the SlotContainer Visual Element
         _mSlotContainer = _mRoot.Q<VisualElement>("SlotContainer");
@@ -75,7 +80,13 @@ public class InventoryUIController : MonoBehaviour
     {
         if (!Input.GetKeyUp(KeyCode.E)) return;
 
-        _mRoot.visible = !_mRoot.visible;
+        _mRoot.style.display = _isVisible ? DisplayStyle.None : DisplayStyle.Flex;
+        _isVisible = !_isVisible;
+        
+        foreach (var cb in OnInventoryToggleCallbacks)
+        {
+            cb.Invoke(_isVisible);
+        }
 
         if (!_isTradeMode) return;
 

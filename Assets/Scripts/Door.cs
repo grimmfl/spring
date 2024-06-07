@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using SQLite4Unity3d;
 using Unity.VisualScripting;
 using UnityEngine;
 

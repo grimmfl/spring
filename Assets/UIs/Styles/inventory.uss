@@ -5,6 +5,7 @@
     align-items: center;
     min-width: auto;
     min-height: auto;
+    display: flex;
 }
 
 .inv-inventory {
@@ -61,7 +62,6 @@
     border-top-color: rgb(48, 48, 48);
     border-bottom-color: rgb(48, 48, 48);
     background-color: rgb(9, 19, 21);
-    /*background-image: url('/Assets/WUG/Sprites/ItemSlotBackground.png');*/
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
     border-top-right-radius: 3px;
