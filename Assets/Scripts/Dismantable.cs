@@ -52,7 +52,7 @@ public class Dismantable : MonoBehaviour
 
     IEnumerator Dismantle()
     {
-        yield return new WaitUntil(() => (gameObject.transform.position - _player.transform.position).magnitude < 1);
+        yield return new WaitUntil(() => this.IsClose(_player));
             
         _isDismantling = true;
 
