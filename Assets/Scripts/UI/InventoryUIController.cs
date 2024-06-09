@@ -80,13 +80,7 @@ public class InventoryUIController : MonoBehaviour
     {
         if (!Input.GetKeyUp(KeyCode.E)) return;
 
-        _mRoot.style.display = _isVisible ? DisplayStyle.None : DisplayStyle.Flex;
-        _isVisible = !_isVisible;
-        
-        foreach (var cb in OnInventoryToggleCallbacks)
-        {
-            cb.Invoke(_isVisible);
-        }
+        ToggleUI();
 
         if (!_isTradeMode) return;
 
@@ -101,6 +95,19 @@ public class InventoryUIController : MonoBehaviour
         foreach (var slot in _inventorySlots)
         {
             slot.IsTradeMode = false;
+        }
+    }
+
+    private void ToggleUI(bool visible = false)
+    {
+        var show = visible || !_isVisible;
+        
+        _mRoot.style.display = show ? DisplayStyle.Flex : DisplayStyle.None;
+        _isVisible = show;
+        
+        foreach (var cb in OnInventoryToggleCallbacks)
+        {
+            cb.Invoke(_isVisible);
         }
     }
 
@@ -202,7 +209,8 @@ public class InventoryUIController : MonoBehaviour
 
     public void StartTrade(Trader trader)
     {
-        _mRoot.visible = true;
+        ToggleUI(true);
+        
         _isTradeMode = true;
         _trader = trader;
 

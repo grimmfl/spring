@@ -2,9 +2,9 @@ using UnityEngine;
 
 public static class Extensions
 {
-    public static bool IsClose(this MonoBehaviour gameObject, GameObject other)
+    public static bool IsClose(this MonoBehaviour gameObject, GameObject other, float magnitude = 1)
     {
-        return (gameObject.transform.position - other.transform.position).magnitude < 1;
+        return (gameObject.transform.position - other.transform.position).magnitude < magnitude;
     }
 
 

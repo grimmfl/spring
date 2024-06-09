@@ -52,7 +52,7 @@ public class Dismantable : MonoBehaviour
 
     IEnumerator Dismantle()
     {
-        yield return new WaitUntil(() => this.IsClose(_player));
+        yield return new WaitUntil(() => this.IsClose(_player, 2));
             
         _isDismantling = true;
 
@@ -75,7 +75,7 @@ public class Dismantable : MonoBehaviour
 
     private void Drop()
     {
-        var dropCounts = _gameEntity.dropItems.ToDictionary(x => x.idItem, x => Random.Range(x.min, x.max));
+        var dropCounts = _gameEntity.dropItems.ToDictionary(x => x.idItem, x => Random.Range(x.min, x.max + 1));
 
         var toDrop = _inventoryRepository.AddItems(dropCounts);
 
