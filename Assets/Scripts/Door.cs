@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
+using MouseButton = Unity.VisualScripting.MouseButton;
 
 public class Door : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class Door : MonoBehaviour
     private GameObject _player;
 
     private bool _isIndoor;
+    private Guid? _iconId;
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +24,24 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        if (!Input.GetMouseButtonDown((int)MouseButton.Left)) return;
-
         var ray = _cam.ScreenPointToRay(Input.mousePosition);
 
-        if (!Physics.Raycast(ray, out var hit)) return;
+        if (!Physics.Raycast(ray, out var hit))
+        {
+            RemoveIcon();
+            return;
+        }
 
-        if (hit.transform.gameObject != gameObject) return;
+        if (hit.transform.gameObject != gameObject)
+        {
+            RemoveIcon();
+            return;
+        }
 
+        ShowIcon();
+        
+        if (!Input.GetMouseButtonDown((int)MouseButton.Left)) return;
+        
         StartCoroutine(ToggleDoor());
     }
 
@@ -68,5 +81,20 @@ public class Door : MonoBehaviour
         if (other.transform.position.IsInObject(outdoor)) return;
         
         StartCoroutine(GoOutside());
+    }
+
+    private void ShowIcon()
+    {
+        if (_iconId != null) return;
+        _iconId = IconDisplayController.AddIcon(Input.mousePosition);
+    }
+
+    private void RemoveIcon()
+    {
+        if (_iconId == null) return;
+        
+        IconDisplayController.RemoveIcon(_iconId.Value);
+        
+        _iconId = null;
     }
 }

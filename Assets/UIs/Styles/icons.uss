@@ -1,0 +1,28 @@
+.icon-image-container {
+    flex-grow: 1;
+    background-color: rgb(255, 255, 255);
+    background-image: url('project://database/Assets/Images/door.png?fileID=2800000&guid=30dede96abed7410a9c76b6e79099fed&type=3#door');
+    width: 32px;
+    height: 32px;
+    max-width: 32px;
+    max-height: 32px;
+    border-top-left-radius: 114px;
+    border-bottom-left-radius: 114px;
+    border-top-right-radius: 114px;
+    border-bottom-right-radius: 114px;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-slice-left: 5;
+    -unity-slice-top: 5;
+    -unity-slice-right: 5;
+    -unity-slice-bottom: 5;
+    border-left-color: rgb(20, 112, 137);
+    border-right-color: rgb(20, 112, 137);
+    border-top-color: rgb(20, 112, 137);
+    border-bottom-color: rgb(20, 112, 137);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    left: auto;
+    position: absolute;
+}
