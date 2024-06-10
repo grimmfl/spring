@@ -78,8 +78,8 @@ public class Door : MonoBehaviour
         
         if (!other.gameObject.CompareTag("Player")) return;
 
-        if (other.transform.position.IsInObject(outdoor)) return;
-        
+        if (outdoor.GetComponent<Renderer>().bounds.Contains(other.transform.position)) return;
+
         StartCoroutine(GoOutside());
     }
 
